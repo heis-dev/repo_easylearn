@@ -12,7 +12,12 @@ services:
       - db
     environment:
       - DEBUG=1
-      - DATABASE_URL=postgresql://izilearning:izilearning@db:5432/izilearning
+      - DB_NAME=izilearning
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_HOST=db
+      - DB_PORT=5432
+      #- DATABASE_URL=postgresql://izilearning:izilearning@db:5432/izilearning
   frontend:
     build: ./frontend
     ports:
@@ -23,7 +28,7 @@ services:
   db:
     image: postgres:15
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_DB=izilearning
       - POSTGRES_USER=postgres
@@ -31,5 +36,5 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  volumes:
-    postgres_data:
+volumes:
+  postgres_data:
